@@ -10,6 +10,20 @@ require("channels");
 
 import "bootstrap";
 
+// Implement select2
+import { initSelect2 } from "../components/init_select2";
+
+document.addEventListener("turbolinks:load", function () {
+	initSelect2();
+});
+
+// Implement type.js
+import { dynamicText } from "../components/banner";
+
+document.addEventListener("turbolinks:load", function () {
+	dynamicText();
+});
+
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.

@@ -40,7 +40,8 @@ drink_names = ['Old Fashioned',
                'Mint Julep',
                'Daiquiri',
                'Dark & Stormy',
-               'Martinez']
+               'Martinez',
+               'Caipirinha']
 
 drink_names.each do |name|
   cocktail = Cocktail.create!(name: name)

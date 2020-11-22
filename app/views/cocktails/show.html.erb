@@ -12,7 +12,7 @@
 
 <%= simple_form_for [@cocktail, @dose] do |f| %>
   <%= f.input :description, label: false, input_html: {placeholder: "Add a description here..."} %>
-  <%= f.association :ingredient, collection: Ingredient.order('name'), include_blank: "Choose an ingredient...", include_hidden: false, label: false, as: :select  %>
+  <%= f.association :ingredient, collection: Ingredient.order('name'), include_blank: "Choose an ingredient...", include_hidden: false, label: false, as: :select, input_html: { class: 'select2' }  %>
   <%= f.submit %>
 <% end %>
 
@@ -26,6 +26,6 @@
 <hr>
 <%= simple_form_for [@cocktail, @review] do |f| %>
   <%= f.input :content, label: false, input_html: {placeholder: "Review this cocktail..."} %>
-  <%= f.input :rating, collection: (0..5).to_a, include_blank: "Choose a rating...", include_hidden: false, label: false, as: :select  %>
+  <%= f.input :rating, collection: (0..5).to_a, include_blank: "Choose a rating...", include_hidden: false, label: false, as: :select, input_html: { class: 'select2' }  %>
   <%= f.submit "Review" %>
 <% end %>
