@@ -1,34 +1,35 @@
-<%= link_to "back to cocktails", cocktails_path %>
+<div class="show-container">
+  <%= link_to "back to cocktails", cocktails_path %>
 
-<h1 class="cocktail-show-title"><%= @cocktail.name %></h1>
-<%= cl_image_tag @cocktail.photo.key, height:300 %>
+  <h1 class="cocktail-show-title"><%= @cocktail.name %></h1>
+  <%= cl_image_tag(@cocktail.photo.key, transformation: [ {crop: "crop", width: 900, height:1400},{width: 200, hight: 300, gravity: 'auto', crop: "fill", quality: 100}]) %>
 
-<h1>Teste</h1>
-<h4>Doses</h4>
-<% @cocktail.doses.each do |dose| %>
-  <p><%= "#{dose.description} #{dose.ingredient.name}" %>
-    <%= link_to dose_path(dose), method: :delete, data: { confirm: 'Are you sure?'} do %>
-      <i class="fas fa-trash-alt"></i>
-    <% end %>
-  </p>
-<% end %>
+  <h4>Doses</h4>
+  <% @cocktail.doses.each do |dose| %>
+    <p><%= "#{dose.description} #{dose.ingredient.name}" %>
+      <%= link_to dose_path(dose), method: :delete, data: { confirm: 'Are you sure?'} do %>
+        <i class="fas fa-trash-alt"></i>
+      <% end %>
+    </p>
+  <% end %>
 
-<%= simple_form_for [@cocktail, @dose] do |f| %>
-  <%= f.input :description, label: false, input_html: {placeholder: "Add a description here..."} %>
-  <%= f.association :ingredient, collection: Ingredient.order('name'), include_blank: "Choose an ingredient...", include_hidden: false, label: false, as: :select, input_html: { class: 'select2' }  %>
-  <%= f.submit class: "btn btn-danger create-dose-btn" %>
-<% end %>
+  <%= simple_form_for [@cocktail, @dose] do |f| %>
+    <%= f.input :description, label: false, input_html: {placeholder: "Add a description here..."} %>
+    <%= f.association :ingredient, collection: Ingredient.order('name'), include_blank: "Choose an ingredient...", include_hidden: false, label: false, as: :select, input_html: { class: 'select2' }  %>
+    <%= f.submit class: "btn btn-danger create-dose-btn" %>
+  <% end %>
 
-<br>
+  <br>
 
-<h4>Reviews</h4>
-<% @cocktail.reviews.each do |review| %>
-  <p><%= "Rating: #{review.rating} | Content: #{review.content}" %></p>
-<% end %>
+  <h4>Reviews</h4>
+  <% @cocktail.reviews.each do |review| %>
+    <p><%= "Rating: #{review.rating} | Content: #{review.content}" %></p>
+  <% end %>
 
-<hr>
-<%= simple_form_for [@cocktail, @review] do |f| %>
-  <%= f.input :content, label: false, input_html: {placeholder: "Review this cocktail..."} %>
-  <%= f.input :rating, collection: (0..5).to_a, include_blank: "Choose a rating...", include_hidden: false, label: false, as: :select, input_html: { class: 'select2' }  %>
-  <%= f.submit "Review" %>
-<% end %>
+  <hr>
+  <%= simple_form_for [@cocktail, @review] do |f| %>
+    <%= f.input :content, label: false, input_html: {placeholder: "Review this cocktail..."} %>
+    <%= f.input :rating, collection: (0..5).to_a, include_blank: "Choose a rating...", include_hidden: false, label: false, as: :select, input_html: { class: 'select2' }  %>
+    <%= f.submit "Review" %>
+  <% end %>
+</div>
