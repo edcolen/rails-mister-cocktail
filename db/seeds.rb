@@ -20,12 +20,27 @@ puts ''
 puts 'Preparing some drinks...'
 sleep(1)
 
-drink_names = ['Cosmopolitan',
-               'Capirinha',
-               'Sex on the beach',
+drink_names = ['Old Fashioned',
+               'Margarita',
+               'Cosmopolitan',
+               'Negroni',
+               'Moscow Mule',
+               'Martini',
                'Mojito',
-               'Tequila Sunrise',
-               'Bloody Mary']
+               'Whiskey Sour',
+               'French 75',
+               'Manhattan',
+               'Spritz',
+               'Gimlet',
+               'Sazerac',
+               'Pimm\'s Cup',
+               'Mimosa',
+               'Paloma',
+               'Sidecar',
+               'Mint Julep',
+               'Daiquiri',
+               'Dark & Stormy',
+               'Martinez']
 
 drink_names.each do |name|
   cocktail = Cocktail.create!(name: name)
@@ -40,7 +55,7 @@ sleep(1)
 
 quantities = ['3 spoons', '200ml', '100ml', '30ml', '2 leaves']
 
-20.times do
+50.times do
   cocktail = Cocktail.all.sample
   ingredient = Ingredient.all.sample
   description = quantities.sample
@@ -56,7 +71,7 @@ puts ''
 puts 'Writing some reviews'
 sleep(1)
 
-20.times do
+40.times do
   cocktail = Cocktail.all.sample
   content = Faker::ChuckNorris.fact
   rating = (1..5).to_a.sample
