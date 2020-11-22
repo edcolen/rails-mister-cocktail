@@ -1,6 +1,9 @@
 <%= link_to "back to cocktails", cocktails_path %>
 
-<h1><%= @cocktail.name %></h1>
+<h1 class="cocktail-show-title"><%= @cocktail.name %></h1>
+<%= cl_image_tag @cocktail.photo.key, height:300 %>
+
+<h1>Teste</h1>
 <h4>Doses</h4>
 <% @cocktail.doses.each do |dose| %>
   <p><%= "#{dose.description} #{dose.ingredient.name}" %>
@@ -13,7 +16,7 @@
 <%= simple_form_for [@cocktail, @dose] do |f| %>
   <%= f.input :description, label: false, input_html: {placeholder: "Add a description here..."} %>
   <%= f.association :ingredient, collection: Ingredient.order('name'), include_blank: "Choose an ingredient...", include_hidden: false, label: false, as: :select, input_html: { class: 'select2' }  %>
-  <%= f.submit %>
+  <%= f.submit class: "btn btn-danger create-dose-btn" %>
 <% end %>
 
 <br>

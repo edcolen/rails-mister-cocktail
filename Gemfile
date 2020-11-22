@@ -25,6 +25,8 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 gem 'autoprefixer-rails'
+gem 'cloudinary'
+gem 'dotenv-rails', groups: %i[development test]
 gem 'faker'
 gem 'font-awesome-sass'
 gem 'simple_form'
