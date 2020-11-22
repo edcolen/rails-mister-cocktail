@@ -13,15 +13,22 @@ import "bootstrap";
 // Implement select2
 import { initSelect2 } from "../components/init_select2";
 
-document.addEventListener("turbolinks:load", function () {
-	initSelect2();
+document.addEventListener("turbolinks:load", function() {
+    initSelect2();
 });
 
 // Implement type.js
 import { dynamicText } from "../components/banner";
 
-document.addEventListener("turbolinks:load", function () {
-	dynamicText();
+document.addEventListener("turbolinks:load", function() {
+    dynamicText();
+});
+
+import { initUpdateNavbarOnScroll } from "../components/navbar";
+
+document.addEventListener("turbolinks:load", () => {
+    // Call your JS functions here
+    initUpdateNavbarOnScroll();
 });
 
 // Uncomment to copy all static images under ../images to the output folder and reference

@@ -4,15 +4,16 @@
         font-family: 'Lobster', cursive;
         font-size: 5rem;
     }
+    padding-bottom: 52vh;
 }
 
 #home-banner {
     background-image: image-url("banner.jpg");
     background-size: cover;
     height: 100vh;
+    color: $orange;
+    text-align: center;
+    padding-top: 40vh;
     background-position: center;
     background-attachment: fixed;
-    text-align: center;
-    color: $orange;
-    padding-top: 40vh;
 }

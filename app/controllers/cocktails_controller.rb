@@ -1,6 +1,8 @@
 class CocktailsController < ApplicationController
   def index
     @cocktails = Cocktail.all
+    @search = params['search']
+    @cocktails = Cocktail.where('lower(name) like ?', "%#{@search['name'].downcase}%") if @search.present?
   end
 
   def show
@@ -27,6 +29,14 @@ class CocktailsController < ApplicationController
     @cocktail.destroy
     redirect_to root_path
   end
+
+  # def top
+  #   @cocktails = Cocktail.all.map do |cocktail|
+  #     { id: cocktail[:id], score: median_rating(cocktail[:id]) }
+  #   end
+  #   @cocktails.sort_by! { |cocktail| cocktail[:score] }
+  #   @top_cocktails = @cocktails.reverse.first(10).map { |cocktail| Cocktail.find(cocktail[:id]) }
+  # end
 
   private
 

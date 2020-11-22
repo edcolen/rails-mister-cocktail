@@ -1,0 +1,4 @@
+<%= simple_form_for :search, url: cocktails_path, method: "GET", html: { class: 'form-inline' } do |f| %>
+  <%= f.input :name, label: false, input_html: { placeholder: "Find a cocktail", value: ""} %>
+  <%= f.submit "Search", class: "btn btn-outline-secondary my-2 my-sm-0"  %>
+<% end %>

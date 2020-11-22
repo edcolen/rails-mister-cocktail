@@ -2,7 +2,8 @@
   <%= link_to "back to cocktails", cocktails_path %>
 
   <h1 class="cocktail-show-title"><%= @cocktail.name %></h1>
-  <%= cl_image_tag(@cocktail.photo.key, transformation: [ {crop: "crop", width: 900, height:1400},{width: 200, hight: 300, gravity: 'auto', crop: "fill", quality: 100}]) %>
+  <%= cl_image_tag(@cocktail.photo.key, transformation: [ {crop: "crop", width: 900, height:1400},
+                                                          {width: 200, hight: 300, gravity: 'auto', crop: "fill", quality: 100}]) %>
 
   <h4>Doses</h4>
   <% @cocktail.doses.each do |dose| %>

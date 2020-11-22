@@ -1,14 +1,25 @@
-<div id="home-banner">
+<% unless @search %>
   <div id="title">
     <h1>Ed's Cocktails</h1>
     <p>
       <span id="typed-text"></span>
     </p>
   </div>
-</div>
+<% end %>
 
 <%= link_to "Create a new cocktail", new_cocktail_path  %>
 
-<% @cocktails.each do |cocktail| %>
-  <p> <%= link_to cocktail.name, cocktail_path(cocktail)  %></p>
-<% end %>
+<div class="container">
+  <div class="cards-grid center py-5 rounded shadow">
+    <% if @cocktails.empty? %>
+      <p>No cocktail matches found</p>
+    <% else %>
+      <% @cocktails.each do |cocktail| %>
+        <div class="card-category py-3" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.9)), url('<%= cl_image_path cocktail.photo.key, transformation: [{crop: "crop", width: 900, height:1400},{width: 200, hight: 300, gravity: 'auto', crop: "fill", quality: 100}] %>')">
+          <%= link_to "#{cocktail.name}" , cocktail_path(cocktail) %>
+        </div>
+      <% end  %>
+    <% end %>
+  </div>
+  <%= link_to 'show more Originals', root_path, class: "btn btn-outline-secondary my-2 my-sm-0" %>
+</div>
