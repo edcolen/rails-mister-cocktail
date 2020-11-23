@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
   root to: 'cocktails#index'
 
-  resources :cocktails, only: %i[index show new create] do
-    resources :doses, only: %i[new create]
-    resources :reviews, only: %i[new create]
+  devise_for :users
+  resources :ingredients, shallow: true
+
+  resources :cocktails, shallow: true do
+    resources :reviews, except: :index, shallow: true
+    resources :doses, except: :index, shallow: true
   end
-  resources :doses, only: :destroy
 end
