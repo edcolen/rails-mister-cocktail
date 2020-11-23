@@ -1,11 +1,13 @@
 class CreateCocktails < ActiveRecord::Migration[6.0]
   def change
     create_table :cocktails do |t|
-      t.string :name
-      t.string :category
-      t.text :instructions
-      t.string :glass
-      t.boolean :alcoholic
+      t.references :user, foreign_key: true
+
+      t.string :name, null: false
+      t.string :category, null: false
+      t.text :instructions, null: false
+      t.string :glass, null: false
+      t.boolean :alcoholic, default: true
       t.boolean :mixed_by_user, default: false
 
       t.timestamps

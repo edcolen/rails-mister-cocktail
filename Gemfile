@@ -26,9 +26,11 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 gem 'autoprefixer-rails'
 gem 'cloudinary'
+gem 'devise'
 gem 'dotenv-rails', groups: %i[development test]
 gem 'faker'
 gem 'font-awesome-sass'
+gem 'pundit'
 gem 'simple_form'
 
 # Reduces boot times through caching; required in config/boot.rb
