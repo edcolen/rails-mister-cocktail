@@ -1,6 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark navbar-lewagon fixed-top">
+<nav class="navbar navbar-expand-lg bg-dark navbar-lewagon fixed-top">
+
   <div class="nav-item">
-    <%= image_tag "https://res.cloudinary.com/dezlaawpu/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,b_rgb:262c35/v1598097511/Ed-06_ascef1.png", class: "avatar dropdown-toggle dropright navbar-dark", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+    <%= image_tag "avatar.jpg", class: "avatar dropdown-toggle dropright bg-dark", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
     <div class="dropdown-menu bg-dark dropdown-menu-left text-white" aria-labelledby="navbarDropdown">
       <%= link_to "Github", "https://github.com/edcolen", class: "nav-link" %>
       <%= link_to "Medium", "https://medium.com/@edcolen", class: "nav-link" %>
@@ -9,13 +10,18 @@
       <%= link_to "Ed's Cocktails", root_path, class: "navbar-brand" %>
     </span>
   </div>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item px-3 align-self-end">
         <%= link_to 'Originals', root_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item px-3 align-self-end">
+        <%= link_to "Mix a new cocktail", new_cocktail_path, class: "nav-link"  %>
       </li>
       <li class="nav-item px-3 align-self-end">
         <%# link_to 'Mixed by users', user_cocktails_path, class: "nav-link" %>

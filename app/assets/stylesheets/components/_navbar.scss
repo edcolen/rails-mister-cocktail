@@ -15,3 +15,12 @@
     background-color: transparent;
     transition: 0.5s background-color ease;
 }
+
+.navbar-brand {
+    font-family: 'Lobster', cursive;
+    color: $orange !important;
+}
+
+.nav-link {
+    color: $orange !important;
+}

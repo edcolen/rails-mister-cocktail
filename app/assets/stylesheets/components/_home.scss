@@ -1,19 +1,22 @@
 #title {
     position: center;
+    padding-bottom: 52vh;
     h1 {
         font-family: 'Lobster', cursive;
-        font-size: 5rem;
+        font-size: 4.5rem;
     }
-    padding-bottom: 52vh;
+    span {
+        font-size: 1.5rem;
+    }
 }
 
 #home-banner {
     background-image: image-url("banner.jpg");
     background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     height: 100vh;
     color: $orange;
     text-align: center;
     padding-top: 40vh;
-    background-position: center;
-    background-attachment: fixed;
 }

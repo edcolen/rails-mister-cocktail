@@ -7,17 +7,17 @@
   </div>
 <% end %>
 
-<%= link_to "Create a new cocktail", new_cocktail_path  %>
-
 <div class="container">
   <div class="cards-grid center py-5 rounded shadow">
     <% if @cocktails.empty? %>
       <p>No cocktail matches found</p>
     <% else %>
       <% @cocktails.each do |cocktail| %>
-        <div class="card-category py-3" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.9)), url('<%= cl_image_path cocktail.photo.key, transformation: [{crop: "crop", width: 900, height:1400},{width: 200, hight: 300, gravity: 'auto', crop: "fill", quality: 100}] %>')">
-          <%= link_to "#{cocktail.name}" , cocktail_path(cocktail) %>
-        </div>
+        <%= link_to cocktail_path(cocktail) do %>
+          <div class="card-category py-3" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.9)), url('<%= cl_image_path cocktail.photo.key, transformation: [{crop: "crop", width: 900, height:1400},{width: 200, hight: 300, gravity: 'auto', crop: "fill", quality: 100}] %>')">
+            <%= cocktail.name %>
+          </div>
+        <% end %>
       <% end  %>
     <% end %>
   </div>
