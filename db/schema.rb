@@ -37,15 +37,22 @@ ActiveRecord::Schema.define(version: 2020_11_22_120304) do
   end
 
   create_table "cocktails", force: :cascade do |t|
-    t.string "name"
+    t.bigint "user_id"
+    t.string "name", null: false
+    t.string "category", null: false
+    t.text "instructions", null: false
+    t.string "glass", null: false
+    t.boolean "alcoholic", default: true
+    t.boolean "mixed_by_user", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_cocktails_on_user_id"
   end
 
   create_table "doses", force: :cascade do |t|
-    t.text "description"
     t.bigint "cocktail_id", null: false
     t.bigint "ingredient_id", null: false
+    t.string "measure"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cocktail_id"], name: "index_doses_on_cocktail_id"
@@ -53,22 +60,47 @@ ActiveRecord::Schema.define(version: 2020_11_22_120304) do
   end
 
   create_table "ingredients", force: :cascade do |t|
-    t.string "name"
+    t.bigint "user_id"
+    t.string "name", null: false
+    t.text "description", null: false
+    t.string "type", null: false
+    t.boolean "alcoholic", default: true
+    t.boolean "added_by_user", default: false
+    t.decimal "abv", precision: 10, scale: 2, default: "0.0"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_ingredients_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "rating"
-    t.text "content"
+    t.bigint "user_id"
     t.bigint "cocktail_id", null: false
+    t.integer "rating", null: false
+    t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cocktail_id"], name: "index_reviews_on_cocktail_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username", default: "", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cocktails", "users"
   add_foreign_key "doses", "cocktails"
   add_foreign_key "doses", "ingredients"
+  add_foreign_key "ingredients", "users"
   add_foreign_key "reviews", "cocktails"
+  add_foreign_key "reviews", "users"
 end
