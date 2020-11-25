@@ -1,7 +1,16 @@
 drink_count = 0
 
+puts 'Creating main user...'
+puts ''
+User.create!(username: 'edcolen', email: 'ed.colen@gmail.com', password: '123456')
+
+puts 'Gathering cocktails ideas...'
+sleep(1)
+
+# Get list of drinks by first letter
+
 ('a'..'z').to_a.each do |letter|
-  puts "Now at #{drink_count}"
+  puts "Mixed #{drink_count} cocktails till now..."
   drinks_url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=#{letter}"
 
   drinks = JSON.parse(open(drinks_url).read)['drinks']
@@ -15,8 +24,10 @@ drink_count = 0
   end
 end
 
+# Get list of drinks by first letter
+
 (0..9).to_a.each do |letter|
-  puts "Now at #{drink_count}"
+  puts "=== Mixed #{drink_count} cocktails till now... ==="
   drinks_url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=#{letter}"
 
   drinks = JSON.parse(open(drinks_url).read)['drinks']
@@ -25,8 +36,63 @@ end
   drinks.each do |drink|
     next if drink.nil?
 
+    # Create cocktail
+    puts '=================='
     puts "Mixing a #{drink['strDrink']}"
+    drink_user_id = User.first.id
+    drink_name = drink['strDrink']
+    drink_category = drink['strCategory']
+    drink_instructions = drink['strInstructions']
+    drink_glass = drink['strGlass']
+    drink_alcoholic = drink['strAlcoholic'] == 'Alcoholic'
+    drink_mixed_by_user = false
+    drink_thumb = drink['strDrinkThumb']
+    cocktail = Cocktail.create!(user_id: drink_user_id,
+                                name: drink_name,
+                                category: drink_category,
+                                instructions: drink_instructions,
+                                glass: drink_glass,
+                                alcoholic: drink_alcoholic,
+                                mixed_by_user: drink_mixed_by_user)
+
+    # Attach image to cocktail
+    drink_name_no_spaces = drink_name.gsub(' ', '_')
+    image = URI.open(drink_thumb)
+    cocktail.photo.attach(io: image,
+                          filename: drink_name_no_spaces,
+                          content_type: 'image/png')
     drink_count += 1
+
+    # Get cocktail ingredients
+    ingredient_counter = 1
+    while ingredient_counter <= 15
+      drink_ingredient_name = drink["strIngredient#{ingredient_counter}"]
+      drink_ingredient_measure = drink["strMeasure#{ingredient_counter}"]
+      ingredient_counter += 1
+      next if drink_ingredient_name.nil?
+
+      drink_ingredient_name_to_url = drink_ingredient_name.gsub(' ', '%20')
+
+      # Get ingredient details
+      ingredient_url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?i=#{drink_ingredient_name}"
+      drink_ingredient = JSON.parse(open(ingredient_url).read)['ingredients']
+      ingredient_user_id = User.first.id
+      ingredient_description = drink_ingredient['strDescription']
+      ingredient_type = drink_ingredient['strType']
+      ingredient_alcoholic = drink_ingredient['strAlcohol'] == 'Yes'
+      ingredient_added_by_user = false
+      ingredient_abv = drink_ingredient['strABV'].to_f
+
+      ingredient = Ingredient.create(name: drink_ingredient_name)
+
+      # Attach image to ingredient
+      drink_ingredient_name_to_url_no_spaces = drink_ingredient_name.gsub(' ', '_')
+      ingredient_image = URI.open("https://www.thecocktaildb.com/images/ingredients/#{drink_ingredient_name_to_url}.png")
+
+      drink_ingredient.photo.attach(io: ingredient_image,
+                                    filename: drink_ingredient_name_to_url_no_spaces,
+                                    content_type: 'image/png')
+    end
   end
 end
 
