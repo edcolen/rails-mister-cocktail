@@ -98,6 +98,12 @@ end
       drink_ingredient.photo.attach(io: ingredient_image,
                                     filename: drink_ingredient_name_to_url_no_spaces,
                                     content_type: 'image/png')
+
+      # Create a dose for the ingredient
+      Dose.create!(cocktail_id: cocktail.id,
+                   ingredient_id: ingredient.id,
+                   measure: drink_ingredient_measure)
+
     end
   end
 end
