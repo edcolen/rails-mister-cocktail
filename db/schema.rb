@@ -64,9 +64,9 @@ ActiveRecord::Schema.define(version: 2020_11_22_120304) do
     t.string "name", null: false
     t.text "description", null: false
     t.string "type", null: false
-    t.boolean "alcoholic", default: true
+    t.string "alcoholic", default: "t"
+    t.string "abv", default: "0.0"
     t.boolean "added_by_user", default: false
-    t.decimal "abv", precision: 10, scale: 2, default: "0.0"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_ingredients_on_user_id"

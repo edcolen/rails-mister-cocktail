@@ -79,11 +79,17 @@ end
       ingredient_user_id = User.first.id
       ingredient_description = drink_ingredient['strDescription']
       ingredient_type = drink_ingredient['strType']
-      ingredient_alcoholic = drink_ingredient['strAlcohol'] == 'Yes'
+      ingredient_alcoholic = drink_ingredient['strAlcohol']
+      ingredient_abv = drink_ingredient['strABV']
       ingredient_added_by_user = false
-      ingredient_abv = drink_ingredient['strABV'].to_f
 
-      ingredient = Ingredient.create(name: drink_ingredient_name)
+      ingredient = Ingredient.create(user_id: ingredient_user_id,
+                                     name: ingredient_user_id,
+                                     description: ingredient_description,
+                                     type: ingredient_type,
+                                     alcoholic: ingredient_alcoholic,
+                                     abv: ingredient_abv,
+                                     added_by_user: ingredient_added_by_user)
 
       # Attach image to ingredient
       drink_ingredient_name_to_url_no_spaces = drink_ingredient_name.gsub(' ', '_')
