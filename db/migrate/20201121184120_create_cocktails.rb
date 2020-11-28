@@ -1,7 +1,7 @@
 class CreateCocktails < ActiveRecord::Migration[6.0]
   def change
     create_table :cocktails do |t|
-      t.references :user, foreign_key: true
+      t.references :user, null: false, foreign_key: true
 
       t.string :name, null: false
       t.string :category, null: false
