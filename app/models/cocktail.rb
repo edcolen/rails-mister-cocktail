@@ -5,4 +5,6 @@ class Cocktail < ApplicationRecord
   has_many :reviews, dependent: :destroy
 
   validates :name, uniqueness: true, presence: true
+  validates :email, uniqueness: true, presence: true
+  validates :category, :instructions, :glass, presence: true
 end
