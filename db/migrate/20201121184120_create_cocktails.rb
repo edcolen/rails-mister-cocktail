@@ -8,7 +8,7 @@ class CreateCocktails < ActiveRecord::Migration[6.0]
       t.integer :ratings
       t.text :instructions, null: false
       t.string :glass, null: false
-      t.boolean :alcoholic, default: true
+      t.string :alcoholic, default: 'alcoholic'
       t.boolean :mixed_by_user, default: false
 
       t.timestamps
