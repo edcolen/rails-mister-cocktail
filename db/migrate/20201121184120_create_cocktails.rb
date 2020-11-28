@@ -5,6 +5,7 @@ class CreateCocktails < ActiveRecord::Migration[6.0]
 
       t.string :name, null: false
       t.string :category, null: false
+      t.integer :ratings
       t.text :instructions, null: false
       t.string :glass, null: false
       t.boolean :alcoholic, default: true
