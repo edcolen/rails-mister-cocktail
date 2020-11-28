@@ -7,26 +7,10 @@ User.create!(username: 'edcolen', email: 'ed.colen@gmail.com', password: '123456
 puts 'Gathering cocktails ideas...'
 sleep(1)
 
-# Get list of drinks by first letter
-
-('a'..'z').to_a.each do |letter|
-  puts "Mixed #{drink_count} cocktails till now..."
-  drinks_url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=#{letter}"
-
-  drinks = JSON.parse(open(drinks_url).read)['drinks']
-  next if drinks.nil?
-
-  drinks.each do |drink|
-    next if drink.nil?
-
-    puts "Mixing a #{drink['strDrink']}"
-    drink_count += 1
-  end
-end
+first_characters = (0...36).map { |i| i.to_s(36) }
 
 # Get list of drinks by first letter
-
-(0..9).to_a.each do |letter|
+first_characters.each do |letter|
   puts "=== Mixed #{drink_count} cocktails till now... ==="
   drinks_url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=#{letter}"
 
@@ -41,10 +25,10 @@ end
     puts "Mixing a #{drink['strDrink']}"
     drink_user_id = User.first.id
     drink_name = drink['strDrink']
-    drink_category = drink['strCategory']
+    drink_category = drink['strCategory'].downcase
     drink_instructions = drink['strInstructions']
-    drink_glass = drink['strGlass']
-    drink_alcoholic = drink['strAlcoholic'] == 'Alcoholic'
+    drink_glass = drink['strGlass'].downcase
+    drink_alcoholic = drink['strAlcoholic'].downcase
     drink_mixed_by_user = false
     drink_thumb = drink['strDrinkThumb']
     cocktail = Cocktail.create!(user_id: drink_user_id,
@@ -78,9 +62,9 @@ end
       drink_ingredient = JSON.parse(open(ingredient_url).read)['ingredients']
       ingredient_user_id = User.first.id
       ingredient_description = drink_ingredient['strDescription']
-      ingredient_type = drink_ingredient['strType']
-      ingredient_alcoholic = drink_ingredient['strAlcohol']
-      ingredient_abv = drink_ingredient['strABV']
+      ingredient_type = drink_ingredient['strType'].downcase
+      ingredient_alcoholic = drink_ingredient['strAlcohol'].downcase
+      ingredient_abv = drink_ingredient['strABV'].downcase
       ingredient_added_by_user = false
 
       ingredient = Ingredient.create(user_id: ingredient_user_id,
