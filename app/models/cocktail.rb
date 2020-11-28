@@ -38,4 +38,5 @@ class Cocktail < ApplicationRecord
                         presence: true,
                         inclusion: { in: ['alcoholic', 'non alcoholic',
                                           'optional alcohol'] }
+  validates :mixed_by_user, presence: true
 end
