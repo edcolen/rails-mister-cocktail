@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :ingredients, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
+  has_one_attached :photo
+
   validates :username,
             presence: true,
             format: { with: /\A(?=[a-zA-Z0-9._-]{5,20}$)(?!.*[_.]{2})[^_.].*[^_.]\z/,
