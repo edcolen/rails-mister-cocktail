@@ -18,7 +18,7 @@ class Cocktail < ApplicationRecord
                                          'homemade liqueur', 'cocoa'] }
   validates :instructions, presence: true,
                            length: { minimum: 30,
-                                     message: 'instructions should be at least 30 characters long' }
+                                     too_short: `instructions should be at least %<count> characters long` }
   validates :glass, presence: true,
                     inclusion: { in: ['white wine glass', 'old-fashioned glass',
                                       'beer glass', 'beer mug', 'shot glass',
