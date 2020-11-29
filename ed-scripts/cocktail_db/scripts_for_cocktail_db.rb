@@ -66,7 +66,7 @@ first_characters.each do |letter|
       ingredient_counter += 1
       next if drink_ingredient_name.nil?
 
-      next if ingredient_names.include?(drink_ingredient_name)
+      next if ingredient_names.include?(drink_ingredient_name.downcase)
 
       # Get ingredient details
       puts "Looking for #{drink_ingredient_name}"
@@ -80,7 +80,7 @@ first_characters.each do |letter|
       ingredient_alcoholic = drink_ingredient['strAlcohol'] ? drink_ingredient['strAlcohol'].downcase : 'unknown'
       ingredient_abv = drink_ingredient['strABV'] ? drink_ingredient['strABV'].downcase : 'unknown'
 
-      ingredient_names.push(drink_ingredient_name)
+      ingredient_names.push(drink_ingredient_name.downcase)
       ingredient_types_set.add(ingredient_type)
       ingredient_alcoholics_set.add(ingredient_alcoholic)
       ingredient_abvs_set.add(ingredient_abv)
