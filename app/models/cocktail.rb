@@ -34,8 +34,8 @@ class Cocktail < ApplicationRecord
                                       'copper mug', 'nick and nora glass',
                                       'pousse cafe glass',
                                       'margarita/coupette glass'] }
-  validates :alcoholic, uniqueness: true,
-                        presence: true,
-                        inclusion: { in: ['alcoholic', 'non alcoholic',
-                                          'optional alcohol'] }
+  validates :alcoholic,
+            presence: true,
+            inclusion: { in: ['alcoholic', 'non alcoholic',
+                              'optional alcohol'] }
 end
