@@ -1,0 +1,10 @@
+beer
+drink
+juice
+liqueur
+rum
+schnapps
+spirit
+unknown
+vodka
+whisky

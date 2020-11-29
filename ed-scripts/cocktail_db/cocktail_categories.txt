@@ -1,0 +1,4 @@
+beer
+cocktail
+milk / float / shake
+shot
