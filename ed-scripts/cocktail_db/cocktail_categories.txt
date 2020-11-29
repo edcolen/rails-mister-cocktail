@@ -1,4 +1,11 @@
 beer
 cocktail
+cocoa
+coffee / tea
+homemade liqueur
 milk / float / shake
+ordinary drink
+other/unknown
+punch / party drink
 shot
+soft drink / soda

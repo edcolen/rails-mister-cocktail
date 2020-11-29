@@ -1,10 +1,35 @@
+aperitif
 beer
+beverage
+bitter
+brandy
+cider
+coffee
+cordial
+cream
 drink
+flower
+fortified wine
+fruit
+fruit juice
+garnish
+gin
 juice
 liqueur
+liquor
+mineral
+mixer
 rum
+sambuca
+sauce
 schnapps
+soft drink
 spirit
+stout
+syrup
 unknown
 vodka
+water
+whiskey
 whisky
+wine

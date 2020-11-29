@@ -22,7 +22,7 @@ def save_to_file(file, objects)
   File.write(file, objects.join("\n"), mode: 'w')
 end
 
-# first_characters = (0...36).map { |i| i.to_s(36) }
+first_characters = (0...36).map { |i| i.to_s(36) }
 # Preparing info sets
 cocktail_names = []
 cocktail_categories = [].to_set
@@ -36,7 +36,7 @@ ingredient_abvs_set = [].to_set
 ingredient_measures_set = [].to_set
 
 # Getting cocktails information
-(1..2).each do |letter|
+first_characters.each do |letter|
   drinks_url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=#{letter}"
   drinks = JSON.parse(open(drinks_url).read)['drinks']
   next if drinks.nil?

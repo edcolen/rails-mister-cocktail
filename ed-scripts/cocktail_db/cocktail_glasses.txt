@@ -1,5 +1,29 @@
+balloon glass
 beer glass
 beer mug
+beer pilsner
+brandy snifter
+champagne flute
+cocktail glass
+coffee mug
+collins glass
+copper mug
+cordial glass
+coupe glass
+highball glass
+hurricane glass
+irish coffee cup
+margarita glass
+margarita/coupette glass
+martini glass
+mason jar
+nick and nora glass
 old-fashioned glass
+pint glass
+pitcher
+pousse cafe glass
+punch bowl
 shot glass
+whiskey sour glass
 white wine glass
+wine glass
