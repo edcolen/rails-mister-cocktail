@@ -5,7 +5,7 @@ class CreateIngredients < ActiveRecord::Migration[6.0]
 
       t.string :name, null: false
       t.text :description, null: false
-      t.string :type, null: false
+      t.string :ingredient_type, null: false
       t.string :alcoholic, default: true
       t.string :abv, precision: 10, scale: 2, default: 0.0
       t.boolean :added_by_user, default: false
