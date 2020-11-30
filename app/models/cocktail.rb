@@ -16,9 +16,8 @@ class Cocktail < ApplicationRecord
                                          'punch / party drink',
                                          'soft drink / soda',
                                          'homemade liqueur', 'cocoa'] }
-  validates :instructions, presence: true,
-                           length: { minimum: 30,
-                                     too_short: `instructions should be at least %<count> characters long` }
+  validates :instructions, presence: true
+
   validates :glass, presence: true,
                     inclusion: { in: ['white wine glass', 'old-fashioned glass',
                                       'beer glass', 'beer mug', 'shot glass',

@@ -7,7 +7,7 @@ class Ingredient < ApplicationRecord
   validates :name, uniqueness: true,
                    presence: true
   validates :description, presence: true,
-                          length: { minimum: 30,
+                          length: { minimum: 20,
                                     too_short: `description should be at least %<count> characters long` }
   validates :ingredient_type, presence: true
   validates :alcoholic, presence: true
