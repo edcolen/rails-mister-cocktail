@@ -30,6 +30,5 @@ syrup
 unknown
 vodka
 water
-whiskey
 whisky
 wine
